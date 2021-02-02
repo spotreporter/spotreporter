@@ -1,0 +1,30 @@
+{
+  "name": "spotreporter",
+  // add compose file "docker-compose.nomount.yml" to the list below to use named volumes instead of local file system mounts
+  "dockerComposeFile": ["docker-compose.devcontainer.yml", "docker-compose.nomount.yml"],
+  "service": "app",
+  "remoteUser": "root",
+  "workspaceFolder": "/workspace",
+  // Use 'settings' to set *default* container specific settings.json values on container create.
+  // You can edit these settings after create using File > Preferences > Settings > Remote.
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  // Copy the contents to the correct location and set permissions
+  "postCreateCommand": "mkdir -p ~/.ssh && cp -r /.ssh-localhost/* ~/.ssh && chmod 700 ~/.ssh && chmod 600 ~/.ssh/*",
+  "extensions": [
+    "github.vscode-pull-request-github",
+    "znck.vue-language-features",
+    "znck.vue",
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "editorconfig.editorconfig",
+    "vivaxy.vscode-conventional-commits",
+    "arcanis.vscode-zipfs",
+    "ms-vsliveshare.vsliveshare",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-azuretools.vscode-docker",
+    "stylelint.vscode-stylelint"
+  ]
+}

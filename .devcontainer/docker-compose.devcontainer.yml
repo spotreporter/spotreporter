@@ -1,0 +1,22 @@
+# This file is used for local development (devcontainer)
+
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+      - 4000:4000
+    volumes:
+      - ..:/workspace:cached
+      # add local ssh config
+      - ~/.ssh:/.ssh-localhost:ro
+    depends_on: gun
+  gun:
+    image: gundb/gun
+    ports:
+      - 8765:8765
+
