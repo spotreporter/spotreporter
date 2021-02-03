@@ -1,12 +1,15 @@
 <template>
-    <ul class="divide-y divide-gray-100">
+  <ul class="divide-y divide-gray-100 p-8">
+    <ReportAddButton></ReportAddButton>
     <slot></slot>
   </ul>
 </template>
 <script lang="ts">
-import { ref, defineComponent } from 'vue';
+import { defineComponent } from 'vue';
+import ReportAddButton from './ReportAddButton.vue';
 
 export default defineComponent({
   name: 'ReportList',
-})
+  components: { ReportAddButton },
+});
 </script>

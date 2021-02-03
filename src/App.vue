@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <hello-world msg="Hello Vue 3 + Vite" />
     <ReportList>
       <Report v-for="report in reports" :key="report.id" :report="report" />
     </ReportList>

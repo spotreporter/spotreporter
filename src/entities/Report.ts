@@ -4,12 +4,12 @@ export class Report {
   id: string;
   spotname: String;
   freetext: String;
-  time: Date
+  date: Date
 
-  constructor(spotname: String, freetext: String, time: Date) {
+  constructor(spotname: String, freetext: String, date: Date) {
     this.id = uuidv4();
     this.spotname = spotname;
     this.freetext = freetext;
-    this.time = time;
+    this.date = date;
   }
 }
