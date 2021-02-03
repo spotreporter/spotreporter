@@ -9,8 +9,11 @@
     "clean": "shx rm -rf dist/ node_modules"
   },
   "dependencies": {
+    "autoprefixer": "^10.2.4",
     "core-util-is": "^1.0.2",
     "gun": "0.2020.520",
+    "postcss": "^8.2.4",
+    "tailwindcss": "^2.0.2",
     "uuid": "^8.3.2",
     "vue": "3.0.5",
     "yarn": "^1.22.10"
