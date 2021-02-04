@@ -8,13 +8,13 @@
       <dl class="float-left text-sm font-medium whitespace-pre">
         <dt class="text-align">Time</dt>
         <dd>
-            {{ report.date?.toLocaleString() }}
+          {{ timeString }}
         </dd>
       </dl>
       <dl class="text-sm font-medium whitespace-pre">
         <dt class="">Text</dt>
         <dd>
-            {{ report.freetext }}
+          {{ report.freetext }}
         </dd>
       </dl>
     </div>
@@ -24,5 +24,11 @@
 <script>
 export default {
   props: ['report'],
+  computed: {
+    timeString: function() {
+      const dateObj = new Date(this.report.date);
+      return dateObj.toLocaleString()
+      }
+  }
 }
 </script>

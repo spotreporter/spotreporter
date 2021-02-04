@@ -12,9 +12,7 @@ import HelloWorld from './components/HelloWorld.vue';
 import ReportList from './components/ReportList.vue';
 import Report from './components/Report.vue';
 import { Report as ReportEntity } from './entities/Report';
-// import { Report as ReportEntity } from './entities/Report';
 import { gun } from './lib/gun';
-
 
 export default defineComponent({
   name: 'App',
@@ -24,15 +22,15 @@ export default defineComponent({
     Report,
   },
   setup: () => {
-    let reports = [];
-    const newReport = new ReportEntity('Heidkate', 'kalt', new Date());
-    gun.get('reports').set(newReport));
-    gun.get('reports').map().on((report) => {
-      console.log(report);
-      reports.push(report);
-    });
+    let reports = ref<ReportEntity[]>([]);
+    gun
+      .get('reports')
+      .map()
+      .on((report: ReportEntity) => {
+        return reports.value.push(report);
+      });
     return { reports };
-  }
+  },
 });
 </script>
 

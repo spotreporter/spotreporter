@@ -4,12 +4,13 @@ export class Report {
   id: string;
   spotname: String;
   freetext: String;
-  date: Date
+  date: number
 
   constructor(spotname: String, freetext: String, date: Date) {
     this.id = uuidv4();
     this.spotname = spotname;
     this.freetext = freetext;
-    this.date = date;
+    this.date = date.getTime();
+
   }
 }
