@@ -8,7 +8,7 @@
       <dl class="float-left text-sm font-medium whitespace-pre">
         <dt class="text-align">Time</dt>
         <dd>
-            {{ report.date.toLocaleString() }}
+            {{ report.date?.toLocaleString() }}
         </dd>
       </dl>
       <dl class="text-sm font-medium whitespace-pre">

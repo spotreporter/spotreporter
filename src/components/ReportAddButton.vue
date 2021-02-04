@@ -13,10 +13,16 @@
 </template>
 <script lang="ts">
 import { ref, defineComponent } from 'vue';
-import { Report as ReportEntity } from '../entities/Report';
-
+import { Report, Report as ReportEntity } from '../entities/Report';
+import { gun } from '../lib/gun';
 export default defineComponent({
   name: 'ReportAddButton',
+  props: {
+    reports: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       newPressed: false,
@@ -25,8 +31,11 @@ export default defineComponent({
   },
   methods: {
     addNewReport: function () {
-      console.log("new report", newReport);
-      this.newPressed = false;
+      console.log("new report", this.newReport);
+      gun.get('reports').put({
+        reports: [...this.reports, this.newReport]
+      });
+     this.newPressed = false;
     },
   }
 });

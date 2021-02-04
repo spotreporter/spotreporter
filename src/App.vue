@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-    <ReportList>
+    <ReportList :reports="reports">
       <Report v-for="report in reports" :key="report.id" :report="report" />
     </ReportList>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import HelloWorld from './components/HelloWorld.vue';
 import ReportList from './components/ReportList.vue';
-import Report from './components/Report.vue';
-import { Report as ReportEntity } from './entities/Report.ts';
+import { Report } from './entities/Report';
+// import { Report as ReportEntity } from './entities/Report';
+import { gun } from './lib/gun';
+
 
 export default defineComponent({
   name: 'App',
@@ -20,11 +22,15 @@ export default defineComponent({
     ReportList,
     Report,
   },
-  data() {
-    return {
-      reports: [new ReportEntity('Heidkate', 'kalt', new Date()), new ReportEntity('Laboe', 'auch kalt', new Date())],
-    }
-  },
+  setup: () => {
+    let reports = ref();
+    const newReport = new Report('Heidkate', 'kalt', new Date());
+    gun.get('reports').set(newReport);
+    gun.get('reports').on((data) => {
+      reports.value = data.reports;
+    });
+    return { reports };
+  }
 });
 </script>
 
