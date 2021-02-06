@@ -1,12 +1,11 @@
 <template>
   <ul class="divide-y divide-gray-100 p-8">
-    <ReportAddButton :reports="reports" ></ReportAddButton>
-    <slot></slot>
+    <ReportAddButton :reports="reports" />
+    <slot />
   </ul>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { Report } from '../entities';
 import ReportAddButton from './ReportAddButton.vue';
 
 export default defineComponent({
@@ -16,7 +15,7 @@ export default defineComponent({
     reports: {
       required: true,
       type: Array,
-    }
+    },
   },
 });
 </script>

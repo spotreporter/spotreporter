@@ -8,7 +8,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
 import ReportList from './components/ReportList.vue';
 import Report from './components/Report.vue';
 import { Report as ReportEntity } from './entities/Report';
@@ -17,7 +16,6 @@ import { gun } from './lib/gun';
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld,
     ReportList,
     Report,
   },

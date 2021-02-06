@@ -4,7 +4,7 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "lint": "eslint --report-unused-disable-directives --cache .",
+    "lint": "eslint --report-unused-disable-directives --cache --ext js,ts,vue .",
     "typecheck": "vuedx-typecheck .",
     "clean": "shx rm -rf dist/ node_modules"
   },
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@tailwindcss/custom-forms": "^0.2.1",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "4.14.1",
     "@typescript-eslint/parser": "4.14.1",
     "@vitejs/plugin-vue": "1.1.2",

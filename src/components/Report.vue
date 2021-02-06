@@ -21,14 +21,23 @@
   </article>
 </template>
 
-<script>
-export default {
-  props: ['report'],
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { Report } from '../entities';
+
+export default defineComponent({
+  name: 'Report',
+  props: {
+    report: {
+      required: true,
+      type: Report,
+    },
+  },
   computed: {
-    timeString: function() {
+    timeString(): string {
       const dateObj = new Date(this.report.date);
-      return dateObj.toLocaleString()
-      }
-  }
-}
+      return dateObj.toLocaleString();
+    },
+  },
+});
 </script>
