@@ -18,17 +18,29 @@
         </dd>
       </dl>
     </div>
+    <div class="flex-right">
+      <button>Remove</button>
+    </div>
   </article>
 </template>
 
 <script>
+import { Report } from '../entities';
+
 export default {
+  name: 'ReportComponent',
   props: ['report'],
+  // props: {
+  //   report: {
+  //     type: Report,
+  //     required: true,
+  //   },
+  // },
   computed: {
-    timeString: function() {
+    timeString: function () {
       const dateObj = new Date(this.report.date);
-      return dateObj.toLocaleString()
-      }
-  }
-}
+      return dateObj.toLocaleString();
+    },
+  },
+};
 </script>
