@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <ReportList :reports="reports">
-      <Report v-for="report in reports" :key="report.id" :report="report" />
+      <ReportComponent v-for="report in reports" :key="report.id" :report="report" />
     </ReportList>
   </div>
 </template>
@@ -10,7 +10,7 @@
 import { defineComponent, ref } from 'vue';
 import HelloWorld from './components/HelloWorld.vue';
 import ReportList from './components/ReportList.vue';
-import Report from './components/Report.vue';
+import ReportComponent from './components/ReportComponent.vue';
 import { Report as ReportEntity } from './entities/Report';
 import { gun } from './lib/gun';
 
@@ -19,7 +19,7 @@ export default defineComponent({
   components: {
     HelloWorld,
     ReportList,
-    Report,
+    ReportComponent,
   },
   setup: () => {
     let reports = ref<ReportEntity[]>([]);
