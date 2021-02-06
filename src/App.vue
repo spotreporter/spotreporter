@@ -1,18 +1,53 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <hello-world msg="Hello Vue 3 + Vite" />
+    <ReportList>
+      <ReportComponent v-for="report in reports" :key="report.id" :report="report" />
+    </ReportList>
+    <pre>{{ reports.length }}:::{{ reports }}</pre>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import ReportList from './components/ReportList.vue';
+import ReportComponent from './components/ReportComponent.vue';
+import { Report } from './entities';
+import { gun } from './lib/gun';
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld,
+    ReportList,
+    ReportComponent,
+  },
+  data() {
+    return {
+      reports: [] as Report[],
+      user: gun.user(),
+    };
+  },
+  created() {
+    gun
+      .get('reports')
+      .map()
+      .on((report: Report) => {
+        console.log('change at reports node', report);
+        let changed = false;
+        this.reports = this.reports.map((reportInArray) => {
+          if (report.id === reportInArray.id) {
+            changed = true;
+            console.log('change report', reportInArray, report);
+            return report;
+          }
+          else {
+            return reportInArray;
+          }
+          });
+          if (!changed) {
+            this.reports.push(report);
+          }
+        }
+      );
   },
 });
 </script>
