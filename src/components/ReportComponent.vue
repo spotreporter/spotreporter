@@ -24,23 +24,23 @@
   </article>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { Report } from '../entities';
 
-export default {
+export default defineComponent({
   name: 'ReportComponent',
-  props: ['report'],
-  // props: {
-  //   report: {
-  //     type: Report,
-  //     required: true,
-  //   },
-  // },
+  props: {
+    report: {
+      required: true,
+      type: Report,
+    },
+  },
   computed: {
-    timeString: function () {
+    timeString(): string {
       const dateObj = new Date(this.report.date);
       return dateObj.toLocaleString();
     },
   },
-};
+});
 </script>
