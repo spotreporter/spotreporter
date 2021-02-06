@@ -19,7 +19,11 @@
     <a href="https://github.com/znck/vue-developer-experience" target="_blank">@vuedx</a>. <br />Note @vuedx is still
     experimental and this setup is provided for early feedback.
   </p>
-  <button @click="increase">count is: {{ count }}</button>
+  <button :disabled="!loggedInUser" @click="increase">count is: {{ count }}</button>
+  <button :disabled="!!loggedInUser" @click="login">Logged in: {{ loggedInUser }}</button>
+  <button :disabled="!loggedInUser" @click="logout">Logout</button>
+  <input v-model="username" type="text" />
+  <input v-model="password" type="text" />
   <p>
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
@@ -27,8 +31,9 @@
 </template>
 
 <script lang="ts">
+// import { SEA } from 'gun';
 import { ref, defineComponent } from 'vue';
-import Gun from 'gun';
+// import Gun from 'gun';
 
 type GunData = {
   name: string;
@@ -46,21 +51,67 @@ export default defineComponent({
   },
   setup: () => {
     let count = ref(0);
-    const gun = Gun<Record<string, GunData>>(['http://192.168.178.39:8765/gun']);
 
-    const increase = () => {
+    let username = ref('test');
+    let password = ref('test');
+
+    let loggedInUser = ref('');
+
+    const gun = Gun<Record<string, GunData>>(['http://localhost:8765/gun']);
+
+    const user = gun.user();
+    // const loggedInUser = computed(() => {
+    //   if (!user.is) {
+    //     return '';
+    //   }
+    //   return user.is.alias;
+    // });
+    // watch(user, () => {
+
+    // });
+    // watch(user.is, (currentValue, oldValue) => {
+    //   console.log('watch', currentValue, oldValue);
+    // });
+    const increase = async () => {
+      if (!user.is) {
+        console.log('login first');
+        return;
+      }
       count.value++;
-      gun.get('mark').put({
-        name: 'Mark',
-        email: 'mark@gunDB.io',
-        count: count.value,
+      user.get('crypt').put(await SEA.encrypt(count.value, user['_'].sea));
+    };
+
+    console.log(user, user.is);
+
+    const login = () => {
+      user.create(username.value, password.value, (res) => {
+        console.log(res, user, user.is);
+        user.auth(username.value, password.value, (res) => {
+          console.log(res, user, user.is, user['_'].sea);
+          loggedInUser.value = user.is.alias;
+        });
       });
     };
 
-    gun.get('mark').on((data) => {
-      count.value = data.count;
+    const logout = () => {
+      user.leave();
+      loggedInUser.value = '';
+      console.log(user, user['_'].sea);
+    };
+
+    gun.on('auth', () => {
+      user.get('crypt').on(async (data) => {
+        count.value = await SEA.decrypt(data, user['_'].sea);
+      });
     });
-    return { count, increase };
+
+    gun.on('hi', (peer) => {
+      console.log('peer: ', peer);
+    });
+    // gun.get('mark').on((data) => {
+    //   count.value = data.count;
+    // });
+    return { count, increase, loggedInUser, login, username, password, logout };
   },
 });
 </script>
