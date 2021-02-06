@@ -19,28 +19,48 @@
       </dl>
     </div>
     <div class="flex-right">
-      <button>Remove</button>
+      <button @click="removeReport">Remove</button>
     </div>
   </article>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { Report } from '../entities';
+import { gun } from '../lib/gun';
 
 export default defineComponent({
   name: 'ReportComponent',
   props: {
     report: {
       required: true,
-      type: Report,
+      type: Object as PropType<Report>,
     },
   },
+  watch: {
+    'report': (report) => {
+        console.log('änderung', report, this.report);
+      },
+  },
+
   computed: {
     timeString(): string {
       const dateObj = new Date(this.report.date);
       return dateObj.toLocaleString();
     },
   },
+  methods: {
+    removeReport(): void {
+        console.log('remove');
+        // this.report.put({spotname: 'test'});
+        // const reportNode = gun.get(this.report);
+
+        // const reports = gun.get('reports');
+        // reports.unset();
+        // reportNode.put({spotname: 'Lindhöft'});
+        gun.get(this.report['_']['#']).put({spotname: 'Laboe'});
+
+      }
+    },
 });
 </script>

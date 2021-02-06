@@ -12,6 +12,7 @@
     "autoprefixer": "^10.2.4",
     "core-util-is": "^1.0.2",
     "gun": "amark/gun#4ded14186f8b5393532bca2abb35fb45861aa237",
+    "gun-unset": "^1.0.1",
     "postcss": "^8.2.4",
     "tailwindcss": "^2.0.2",
     "uuid": "^8.3.2",
