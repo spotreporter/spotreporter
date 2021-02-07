@@ -12,7 +12,6 @@ import Auth from './components/Auth.vue';
 import { computed, defineComponent } from 'vue';
 import ReportList from './components/ReportList.vue';
 import ReportComponent from './components/ReportComponent.vue';
-// import { gun } from './lib/gun';
 import { reports } from './compositions/useReports';
 import { isFilterActive, reportFilter } from './compositions/useReportFilter';
 
