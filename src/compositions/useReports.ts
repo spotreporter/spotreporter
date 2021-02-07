@@ -10,7 +10,7 @@ export function addNewReport(report: Report): void {
 }
 
 export function removeReport(report: IGunRecordData<Report>): void {
-  gun.value.get(report._['#'] as 'reports').put({ deleted: true });
+  gun.value.get(report._['#']).put({ deleted: true });
 }
 
 export const reports = ref<Report[]>([]);

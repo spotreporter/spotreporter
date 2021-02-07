@@ -2,18 +2,19 @@
   <div id="app">
     <Auth />
     <ReportList>
-      <ReportComponent v-for="report in reports" :key="report.id" :report="report" />
+      <ReportComponent v-for="report in filteredReports" :key="report.id" :report="report" />
     </ReportList>
   </div>
 </template>
 
 <script lantg="ts">
 import Auth from './components/Auth.vue';
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import ReportList from './components/ReportList.vue';
 import ReportComponent from './components/ReportComponent.vue';
 // import { gun } from './lib/gun';
 import { reports } from './compositions/useReports';
+import { reportFilter } from './compositions/useReportFilter';
 
 export default defineComponent({
   name: 'App',
@@ -23,11 +24,12 @@ export default defineComponent({
     ReportComponent,
   },
   setup() {
-    // const user = ref(gun.user());
+    const filteredReports = computed(() => {
+      return reports.value.filter((report) => reportFilter.value.includes(report.spotname));
+    });
 
     return {
-      // user,
-      reports,
+      filteredReports,
     };
   },
 });

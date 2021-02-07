@@ -1,5 +1,6 @@
 import { gun } from './useGun';
 import { ref } from 'vue';
+import { reportFilter } from './useReportFilter';
 
 export const user = gun.value.user();
 
@@ -43,5 +44,6 @@ export function login(username: string, password: string): void {
 export function logout(): void {
   user.leave();
   loggedInUser.value = '';
+  reportFilter.value = [];
   console.log(user, user['_'].sea);
 }
