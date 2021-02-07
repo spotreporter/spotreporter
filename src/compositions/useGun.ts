@@ -7,7 +7,7 @@ interface GunState {
   reports: Report[];
 }
 
-const gunner = Gun<GunState>(['http://localhost:8765/gun']);
+const gunner = Gun<GunState>(['https://spotreporter-gun.herokuapp.com/gun', 'http://localhost:8765/gun']);
 
 export const gun = ref(gunner);
 
