@@ -3,16 +3,15 @@
     <ReportList>
       <ReportComponent v-for="report in reports" :key="report.id" :report="report" />
     </ReportList>
-    <pre>{{ reports.length }}:::{{ reports }}</pre>
   </div>
 </template>
 
-<script lang="ts">
+<script lantg="ts">
 import { defineComponent } from 'vue';
 import ReportList from './components/ReportList.vue';
 import ReportComponent from './components/ReportComponent.vue';
-import { Report } from './entities';
-import { gun } from './lib/gun';
+// import { gun } from './lib/gun';
+import { reports } from './compositions/useReports';
 
 export default defineComponent({
   name: 'App',
@@ -20,34 +19,13 @@ export default defineComponent({
     ReportList,
     ReportComponent,
   },
-  data() {
+  setup() {
+    // const user = ref(gun.user());
+
     return {
-      reports: [] as Report[],
-      user: gun.user(),
+      // user,
+      reports,
     };
-  },
-  created() {
-    gun
-      .get('reports')
-      .map()
-      .on((report: Report) => {
-        console.log('change at reports node', report);
-        let changed = false;
-        this.reports = this.reports.map((reportInArray) => {
-          if (report.id === reportInArray.id) {
-            changed = true;
-            console.log('change report', reportInArray, report);
-            return report;
-          }
-          else {
-            return reportInArray;
-          }
-          });
-          if (!changed) {
-            this.reports.push(report);
-          }
-        }
-      );
   },
 });
 </script>

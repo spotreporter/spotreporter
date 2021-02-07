@@ -1,3 +1,4 @@
-import { Report } from '../entities/Report';
+import Gun from 'gun';
 
-export const gun = Gun<Record<string, Report>>(['http://192.168.178.39:8765/gun']);
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+export default window.GUN as typeof Gun;
