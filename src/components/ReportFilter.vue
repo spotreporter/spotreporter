@@ -12,12 +12,13 @@
         Apply filter
       </button>
     </form>
+    <input v-model="isFilterActive" type="checkbox" />
   </li>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
-import { reportFilter, setReportFilter } from '../compositions/useReportFilter';
+import { reportFilter, setReportFilter, isFilterActive } from '../compositions/useReportFilter';
 import { loggedInUser } from '../compositions/useUser';
 
 export default defineComponent({
@@ -34,7 +35,7 @@ export default defineComponent({
       commaSeparatedFilter.value = '';
     };
 
-    return { commaSeparatedFilter, filter, reportFilter: _reportFilter, loggedInUser };
+    return { commaSeparatedFilter, filter, reportFilter: _reportFilter, loggedInUser, isFilterActive };
   },
 });
 </script>

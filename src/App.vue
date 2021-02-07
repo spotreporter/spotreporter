@@ -14,7 +14,7 @@ import ReportList from './components/ReportList.vue';
 import ReportComponent from './components/ReportComponent.vue';
 // import { gun } from './lib/gun';
 import { reports } from './compositions/useReports';
-import { reportFilter } from './compositions/useReportFilter';
+import { isFilterActive, reportFilter } from './compositions/useReportFilter';
 
 export default defineComponent({
   name: 'App',
@@ -25,6 +25,9 @@ export default defineComponent({
   },
   setup() {
     const filteredReports = computed(() => {
+      if (!isFilterActive.value) {
+        return reports.value;
+      }
       return reports.value.filter((report) => reportFilter.value.includes(report.spotname));
     });
 

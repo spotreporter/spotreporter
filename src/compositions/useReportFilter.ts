@@ -4,6 +4,7 @@ import { user } from './useUser';
 import { SEA } from '../lib/gun';
 
 export const reportFilter = ref<string[]>([]);
+export const isFilterActive = ref(false);
 
 export async function setReportFilter(commaSeparatedFilter: string): Promise<void> {
   user.get('reportFilter').put(await SEA.encrypt(commaSeparatedFilter, user['_'].sea));
