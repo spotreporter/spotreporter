@@ -45,44 +45,7 @@ export default defineComponent({
     const _register = () => {
       register(username.value, password.value);
     };
-    // const gun = Gun<Record<string, GunData>>(['http://localhost:8765/gun']);
 
-    // const user = gun.value.user();
-    // const loggedInUser = computed(() => {
-    //   if (!user.is) {
-    //     return '';
-    //   }
-    //   return user.is.alias;
-    // });
-    // watch(user, () => {
-
-    // });
-    // watch(user.is, (currentValue, oldValue) => {
-    //   console.log('watch', currentValue, oldValue);
-    // });
-
-    // const increase = async () => {
-    //   if (!user.is) {
-    //     console.log('login first');
-    //     return;
-    //   }
-    //   count.value++;
-    //   user.get('crypt').put(await SEA.encrypt(count.value, user['_'].sea));
-    // };
-
-    // gun.value.on('auth', () => {
-    //   user.get('crypt').on(async (data) => {
-    //     count.value = await SEA.decrypt(data, user['_'].sea);
-    //   });
-    // });
-
-    // gun.value.on('hi', (peer) => {
-    //   console.log('peer: ', peer);
-    // });
-
-    // gun.get('mark').on((data) => {
-    //   count.value = data.count;
-    // });
     return { count, loggedInUser, login: _login, username, password, logout, register: _register };
   },
 });

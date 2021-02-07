@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { computed, defineComponent, PropType } from 'vue';
 import { Report } from '../entities';
 import { removeReport } from '../compositions/useReports';
 import { IGunRecordData } from 'gun/types/types';
@@ -50,34 +50,15 @@ export default defineComponent({
     const remove = () => {
       removeReport(props.report);
     };
+
+    const timeString = computed(() => {
+      const dateObj = new Date(props.report.date);
+      return dateObj.toLocaleString();
+    });
     return {
       removeReport: remove,
+      timeString,
     };
   },
-
-  computed: {
-    timeString(): string {
-      const dateObj = new Date(this.report.date);
-      return dateObj.toLocaleString();
-    },
-  },
-  watch: {
-    report(report, oldReport) {
-      console.log('änderung', report, this.report, oldReport);
-    },
-  },
-
-  // methods: {
-  //   removeReport(): void {
-  //     console.log('remove');
-  //     // this.report.put({spotname: 'test'});
-  //     // const reportNode = gun.get(this.report);
-
-  //     // const reports = gun.get('reports');
-  //     // reports.unset();
-  //     // reportNode.put({spotname: 'Lindhöft'});
-  //     gun.value.get(this.report['_']['#']).put({ spotname: 'Laboe' });
-  //   },
-  // },
 });
 </script>
