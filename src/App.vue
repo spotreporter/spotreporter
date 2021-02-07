@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Auth />
     <ReportList>
       <ReportComponent v-for="report in reports" :key="report.id" :report="report" />
     </ReportList>
@@ -7,6 +8,7 @@
 </template>
 
 <script lantg="ts">
+import Auth from './components/Auth.vue';
 import { defineComponent } from 'vue';
 import ReportList from './components/ReportList.vue';
 import ReportComponent from './components/ReportComponent.vue';
@@ -16,6 +18,7 @@ import { reports } from './compositions/useReports';
 export default defineComponent({
   name: 'App',
   components: {
+    Auth,
     ReportList,
     ReportComponent,
   },

@@ -18,6 +18,12 @@
           {{ report.freetext }}
         </dd>
       </dl>
+      <dl class="text-sm font-medium whitespace-pre">
+        <dt class="">User</dt>
+        <dd>
+          {{ report.user }}
+        </dd>
+      </dl>
     </div>
     <div class="flex-right">
       <button @click="removeReport">Remove</button>
