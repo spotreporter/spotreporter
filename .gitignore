@@ -12,13 +12,13 @@ node_modules
 dist
 *.tsbuildinfo
 
-# Yarn ignores for Zero-Installs. See https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+# Yarn ignores without using Zero-Installs. See https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 .yarn/*
-!.yarn/cache
 !.yarn/releases
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
+.pnp.*
 
 # eslint stuff
 .eslintcache
