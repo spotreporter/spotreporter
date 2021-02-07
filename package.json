@@ -9,6 +9,7 @@
     "clean": "shx rm -rf dist/ node_modules"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.2.1",
     "autoprefixer": "^10.2.4",
     "core-util-is": "^1.0.2",
     "gun": "amark/gun#4ded14186f8b5393532bca2abb35fb45861aa237",
@@ -20,7 +21,6 @@
     "yarn": "^1.22.10"
   },
   "devDependencies": {
-    "@tailwindcss/custom-forms": "^0.2.1",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "4.14.1",
     "@typescript-eslint/parser": "4.14.1",
