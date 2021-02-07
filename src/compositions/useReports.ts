@@ -1,6 +1,6 @@
 import { Report } from '../entities';
 import { gun } from './useGun';
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 
 export function addNewReport(report: Report): void {
   console.log('new object', report);
@@ -20,8 +20,12 @@ export function removeReport(report: GunExt<Report>): void {
 
 export const reports = ref<GunExt<Report>[]>([]);
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-gun.value.get('reports').map().on(() => {});
+// hack to make initial loading of reports work
+gun.value
+  .get('reports')
+  .map()
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  .on(() => {});
 
 gun.value
   .get('reports')

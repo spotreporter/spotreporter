@@ -3,7 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],
     "composite": true,
     "alwaysStrict": true,
     "strict": true,
@@ -25,7 +25,8 @@
     "declarationMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "baseUrl": "."
+    "rootDir": ".",
+    "baseUrl": "src"
   },
   "exclude": ["node_modules", "dist"]
 }
