@@ -28,14 +28,15 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { Report } from '../entities';
-import { GunExt, removeReport } from '../compositions/useReports';
+import { removeReport } from '../compositions/useReports';
+import { IGunRecordData } from 'gun/types/types';
 
 export default defineComponent({
   name: 'ReportComponent',
   props: {
     report: {
       required: true,
-      type: Object as PropType<GunExt<Report>>,
+      type: Object as PropType<IGunRecordData<Report>>,
     },
   },
 

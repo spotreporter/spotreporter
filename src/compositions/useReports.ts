@@ -1,6 +1,7 @@
 import { Report } from '../entities';
 import { gun } from './useGun';
 import { ref } from 'vue';
+import { IGunRecordData } from 'gun/types/types';
 
 export function addNewReport(report: Report): void {
   console.log('new object', report);
@@ -8,17 +9,11 @@ export function addNewReport(report: Report): void {
   gun.value.get('reports').set(report);
 }
 
-export type GunExt<T> = T & {
-  readonly _: {
-    '#': string;
-  };
-};
-
-export function removeReport(report: GunExt<Report>): void {
+export function removeReport(report: IGunRecordData<Report>): void {
   gun.value.get(report._['#'] as 'reports').put({ deleted: true });
 }
 
-export const reports = ref<GunExt<Report>[]>([]);
+export const reports = ref<Report[]>([]);
 
 // hack to make initial loading of reports work
 gun.value
