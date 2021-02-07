@@ -10,3 +10,7 @@ interface GunState {
 const gunner = Gun<GunState>(['http://localhost:8765/gun']);
 
 export const gun = ref(gunner);
+
+gun.value.on('hi', (peer) => {
+  console.log('new peer: ', peer);
+});
